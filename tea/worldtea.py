@@ -1,11 +1,11 @@
 import telebot
 from telebot import types
 from datatea import *
-
+import os
 bot = telebot.TeleBot(token)
 
 def send_photo(message):
-    photo = open(f'C:/Users/user752/OneDrive/Desktop/pyBots/tea/tea/{message.text}/1.jpg', 'rb')
+    photo = open(f'{os.getcwd()}/teabot2/tea/tea/{message.text}/1.jpg', 'rb')
     bot.send_photo(message.chat.id, photo)
      
 
@@ -61,18 +61,14 @@ def back_to_menu(message):
 def contacts(message):
     bot.send_message(message.chat.id, 'Писать сюда: @prostoalt')
 
-
 @bot.message_handler(commands=['start', 'help'])
 def start_message(message):
     button_message(message)
     
-
-
-
 def price_about_tea(message):
-    bot.send_message(message.chat.id, f'{dictObject[message.text].get()}')
     send_photo(message)
-
+    bot.send_message(message.chat.id, f'{dictObject[message.text].get()}')
+    
 @bot.message_handler(content_types='text')
 def say(message):
     if message.text == "Назад":
@@ -81,8 +77,9 @@ def say(message):
         contacts(message)
     if message.text == 'Наши цены':
         button_tea_about_price(message)
-    if message.text in names_of_tea_desc:
+    if message.text in dictObject.keys():
         price_about_tea(message)
     if message.text == "Фото":
         send_photo(message)
+
 bot.infinity_polling()

@@ -1,5 +1,6 @@
 import pandas as pd
-df = pd.read_excel('tea2.xlsx')
+import os
+df = pd.read_excel(f'{os.getcwd()}/teabot2/tea/tea2.xlsx')
 
 df.drop('Unnamed: 8', axis = 1, inplace = True)
 df.drop('Unnamed: 9', axis = 1, inplace = True)

@@ -16,16 +16,10 @@ class Tea():
         self.price1 = raw[4]
         self.price50 = raw[5]
     def get(self):
-        return f'Название: {self.name}\nОписание: {self.desc}\nЦена за 50гр: {self.price50}'
-names_of_tea_desc = []
+        return f'Цена за 50гр: {self.price50}\nНазвание: {self.name}\nОписание: {self.desc}'
 
 dictObject = {}
 for i in range(len(df)):
     object = Tea(df.iloc[i])
     dictObject[object.name] = object
-    names_of_tea_desc.append(object.name)
 
-
-dictTea = {
-    
-}
